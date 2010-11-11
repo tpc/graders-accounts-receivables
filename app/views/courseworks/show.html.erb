@@ -1,0 +1,13 @@
+<p>
+  <b>Title:</b>
+  <%=h @coursework.title %>
+</p>
+
+<p>
+  <b>Course:</b>
+  <%=h @coursework.course_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_coursework_path(@coursework) %> |
+<%= link_to 'Back', courseworks_path %>

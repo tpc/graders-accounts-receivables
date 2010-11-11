@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  DRS_ID: MyString
+  FRSB_ID: MyString
+
+two:
+  name: MyString
+  DRS_ID: MyString
+  FRSB_ID: MyString

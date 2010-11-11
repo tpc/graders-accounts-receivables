@@ -1,0 +1,35 @@
+module GarStaticHelper
+  def strf(a_date)
+    (a_date).strftime("%d%b%Y%a").upcase()
+  end
+  def get_comma_separated_coursework_for_listing(courseworks)
+    if courseworks.length == 1
+      return Course.find(courseworks[0].course_id).code + ': ' + Coursework.find(courseworks[0].id).title
+    else
+      a_hash = {}
+      for cw in courseworks
+        cc = Course.find(cw.course_id).code
+        if a_hash.include?(cc)
+          a_hash[cc].push(cw)
+        else
+          a_hash[cc] = []
+          a_hash[cc].push(cw)
+        end
+      end
+      a_str = ''
+      for course_code in a_hash.keys().sort()
+        count = 0
+        a_str += course_code + ': '
+        for coursework in a_hash[course_code]
+          a_str += Coursework.find(coursework.id).title
+          count += 1
+          if count != a_hash[course_code].length
+            a_str += ', '
+          end
+        end
+        a_str += '<br/>'
+      end
+      return a_str
+    end
+  end
+end

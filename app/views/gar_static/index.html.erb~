@@ -1,0 +1,15 @@
+<h1>Graders Accounts Receivables Index page</h1>
+   <% form_tag '#' do %>
+      <%= check_box_tag 'by_grader' %><label>Display Listings by Grader</label>
+   <% end %>
+
+   <div id='list'>
+ <%= render :partial => 'listings_by_grader_or_coursework' %>
+   </div>
+
+   <%= observe_field 'by_grader',
+       :on => 'click',
+       :url => {:controller => 'gar_static', :action => 'get_listings_by_grader_or_coursework' },
+       :with => 'by_grader',
+       :update => 'list' %>
+<p></p>

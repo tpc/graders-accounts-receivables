@@ -1,0 +1,22 @@
+<h1>Listing courseworks</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Course</th>
+  </tr>
+
+<% for coursework in @courseworks %>
+  <tr>
+    <td><%=h coursework.title %></td>
+    <td><%=h Course.find(:all, :order => "id")[coursework.course_id].code %></td>
+    <td><%= link_to 'Show', coursework %></td>
+    <td><%= link_to 'Edit', edit_coursework_path(coursework) %></td>
+    <td><%= link_to 'Destroy', coursework, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New coursework', new_coursework_path %>

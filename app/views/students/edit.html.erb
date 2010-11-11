@@ -1,0 +1,27 @@
+<h1>Editing student</h1>
+
+<%= error_messages_for :student %>
+
+<% form_for(@student) do |f| %>
+  <p>
+    <b>Name</b><br />
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <b>Drs id</b><br />
+    <%= f.text_field :DRS_ID %>
+  </p>
+
+  <p>
+    <b>Frsb id</b><br />
+    <%= f.text_field :FRSB_ID %>
+  </p>
+
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @student %> |
+<%= link_to 'Back', students_path %>

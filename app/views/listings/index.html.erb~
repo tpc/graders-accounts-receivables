@@ -1,0 +1,26 @@
+<h1>Listings</h1>
+
+<table>
+  <tr>
+    <th>Grader</th>
+    <th>Student</th>
+    <th>Coursework</th>
+    <th>Received</th>
+  </tr>
+
+<% for listing in @listings %>
+  <tr>
+    <td><%=h Grader.find(listing.grader_id).name %></td>
+    <td><%=h Student.find(listing.student_id).name %></td>
+    <td><%= get_comma_separated_coursework_for_listing(listing.courseworks) %></td>
+    <td><%=h listing.disposition %></td>
+    <td><%= link_to 'Show', listing %></td>
+    <td><%= link_to 'Edit', edit_listing_path(listing) %></td>
+    <td><%= link_to 'Delete', listing, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New listing', new_listing_path %>

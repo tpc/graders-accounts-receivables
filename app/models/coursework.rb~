@@ -1,0 +1,2 @@
+class Coursework < ActiveRecord::Base
+end

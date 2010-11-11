@@ -1,0 +1,30 @@
+<h1>Listing graders</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Primary phone</th>
+    <th>Primary phone type</th>
+    <th>Secondary phone</th>
+    <th>Secondary phone type</th>
+    <th>Email address</th>
+  </tr>
+
+<% for grader in @graders %>
+  <tr>
+    <td><%=h grader.name %></td>
+    <td><%=h grader.pri_phone %></td>
+    <td><%=h grader.p_ph_type %></td>
+    <td><%=h grader.sec_phone %></td>
+    <td><%=h grader.s_ph_type %></td>
+    <td><%=h grader.email_address %></td>
+    <td><%= link_to 'Show', grader %></td>
+    <td><%= link_to 'Edit', edit_grader_path(grader) %></td>
+    <td><%= link_to 'Delete', grader, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New grader', new_grader_path %>

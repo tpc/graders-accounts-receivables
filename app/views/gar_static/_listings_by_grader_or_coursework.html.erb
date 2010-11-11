@@ -1,0 +1,49 @@
+  <% if params[:by_grader] == '1' %>
+       <% @graders.each do |grader| %>
+          <h2><%= link_to grader.name, {:controller => 'graders', :action => grader.id} %></h2>
+          <ul>
+             <% Listing.find(:all, :conditions => "grader_id = #{grader.id} and disposition = ''").each do |listing| %>
+             <li>
+<% if listing.created_at + listing.grace_period.days <= Time.now %>
+<span class='red'>
+<%= strf(listing.created_at) %> to
+<%= strf(listing.created_at + listing.grace_period.days) %>
+</span>
+             <% else %>
+<span>
+<%= strf(listing.created_at) %> to
+<%= strf(listing.created_at + listing.grace_period.days) %>
+</span>
+             <% end %>
+                 <br />
+<%= Student.find(listing.student_id).name %><br />
+                 <%= get_comma_separated_coursework_for_listing(listing.courseworks) %>
+             </li>
+             <% end %>
+          </ul>
+       <% end %>
+   <% else %>
+       <% @courseworks.each do |coursework| %>
+          <h2><%= Course.find(coursework.course_id).code + ': ' + coursework.title %></h2>
+          <ul>
+             <% Listing.find(coursework.listing_ids).each do |listing| %>
+             <li>
+                 <%= link_to Grader.find(listing.grader_id).name.strip(), {:controller => 'graders', :action => listing.grader_id} %> 
+<% if listing.created_at + listing.grace_period.days <= Time.now %>
+<span class='red'>
+<%= strf(listing.created_at) %> to
+<%= strf(listing.created_at + listing.grace_period.days) %>
+</span>
+             <% else %>
+<span>
+<%= strf(listing.created_at) %> to
+<%= strf(listing.created_at + listing.grace_period.days) %>
+</span>
+             <% end %>
+                 <br />
+             <%= Student.find(listing.student_id).name %>
+             </li>
+             <% end %>
+          </ul>
+       <% end %>
+   <% end %>

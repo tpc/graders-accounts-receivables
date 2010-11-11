@@ -1,0 +1,37 @@
+<h1>New grader</h1>
+
+<%= error_messages_for :grader %>
+
+<% form_for(@grader) do |f| %>
+  <p>
+    <b>Name</b><br />
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <b>Pri phone</b><br />
+    <%= f.text_field :pri_phone %>
+  </p>
+ <p>
+   <b>Primary Phone Type</b><br/>
+<%= f.select("p_ph_type",  {'Home Phone'=>'home', 'Cell Phone'=>'mobile', 'Office Phone'=>'office', 'Fax Number'=>'fax', 'Pager Number'=>'pager', 'Other Phone Type'=>'other'}, options={:prompt => "please select a phone type"}) %>
+ </p>
+  <p>
+    <b>Sec phone</b><br />
+    <%= f.text_field :sec_phone %>
+  </p>
+ <p>
+   <b>Secondary Phone Type</b><br/>
+<%= f.select("s_ph_type",  {'Home Phone'=>'home', 'Cell Phone'=>'mobile', 'Office Phone'=>'office', 'Fax Number'=>'fax', 'Pager Number'=>'pager', 'Other Phone Type'=>'other'}) %>
+ </p>
+  <p>
+    <b>Email address</b><br />
+    <%= f.text_field :email_address %>
+  </p>
+
+  <p>
+    <%= f.submit "Create" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', graders_path %>

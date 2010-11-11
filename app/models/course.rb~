@@ -1,0 +1,9 @@
+class Course < ActiveRecord::Base
+has_many:courseworks
+def title_and_code
+   title + ': ' + code
+end
+def code_and_title
+   code + ': ' + title
+end
+end

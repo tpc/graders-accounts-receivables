@@ -1,0 +1,27 @@
+<p>
+  <b>Name:</b>
+  <%=h @grader.name %>
+</p>
+
+<p>
+  <b>Primary phone:</b>
+  <%=h @grader.pri_phone %> (<%=h @grader.p_ph_type %>)
+</p>
+
+<p>
+<% if @grader.sec_phone.strip().length != 0 %>
+  <b>Secondary phone:</b>
+  <%=h @grader.sec_phone %> (<%=h @grader.s_ph_type %>)
+<% end %>
+</p>
+
+<p>
+<% if @grader.email_address.strip().length != 0 %>
+  <b>Email address:</b>
+  <%=h @grader.email_address %>
+<% end %>
+</p>
+
+
+<%= link_to 'Edit', edit_grader_path(@grader) %> |
+<%= link_to 'Back', graders_path %>

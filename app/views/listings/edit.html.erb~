@@ -1,0 +1,25 @@
+<h1>Editing listing</h1>
+
+<%= error_messages_for :listing %>
+
+<% form_for(@listing) do |f| %>
+  <p>
+    <b>Grader</b><br />
+    <%= f.select(method = :grader_id, collection = Grader.find(:all).collect{|c| [c.name, c.id] }) %>
+  </p>
+  <p>
+    <b>Student</b><br />
+    <%= f.select(method = :student_id, collection = Student.find(:all).collect{|c| [c.name, c.id] }) %>
+  </p>
+  <p>
+    <b>Disposition</b><br />
+<%= f.radio_button :disposition, :hello, options={:checked => true, :label => "hello"} %>
+  </p>
+
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @listing %> |
+<%= link_to 'Back', listings_path %>

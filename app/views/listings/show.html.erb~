@@ -1,0 +1,16 @@
+<p>
+  <b>Grader:</b>
+  <%=h Grader.find(@listing.grader_id).name %>
+</p>
+
+<p>
+  <b>Student:</b>
+  <%=h Student.find(@listing.student_id).name %>
+</p>
+<p>
+  <b>Coursework:</b>
+  <%=h get_comma_separated_coursework_for_listing(@listing.courseworks) %>
+</p>
+
+<%= link_to 'Edit', edit_listing_path(@listing) %> |
+<%= link_to 'Back', listings_path %>

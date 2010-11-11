@@ -1,0 +1,35 @@
+<h1>New listing</h1>
+
+<%= error_messages_for :listing %>
+
+<% form_for(@listing) do |f| %>
+<p>
+</p>
+  <p>
+    <b>Grader</b><br />
+    <%= f.select(method = :grader_id, collection = Grader.find(:all).collect{|c| [c.name, c.id] }, options = {:prompt => "please select a grader"}) %>
+  </p>
+  <p>
+    <b>Student</b><br />
+    <%= f.select(method = :student_id, collection = Student.find(:all).collect{|c| [c.name, c.id] }, options = {:prompt => "please select a student"}) %>
+  </p>
+  <p>
+    <b>Coursework</b>
+    <br />
+      <%= check_box_tag 'by_title' %><label>sort by Title</label>
+   <div id='multiselect'>
+ <%= render :partial => 'sort_by_code_or_title' %>
+   </div>
+   <%= observe_field 'by_title',
+       :on => 'click',
+       :url => {:controller => 'listings', :action => 'get_sort_by_code_or_title' },
+       :with => 'by_title',
+       :update => 'multiselect' %>
+  </p>
+<%= f.hidden_field :received %>
+
+    <%= f.submit "Create" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', listings_path %>

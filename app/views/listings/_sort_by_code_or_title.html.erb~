@@ -1,0 +1,10 @@
+
+    <select id="listing_coursework_ids" multiple="multiple" name="listing[coursework_ids][]" size="Course.find(:all).length">
+   <% if params[:by_title] == '1' %>
+<%= option_groups_from_collection_for_select(@sorted_courses_english, :courseworks, :t_c, :id, :title, selected_key = nil) %>
+<%= option_groups_from_collection_for_select(Course.find_by_sql("select * from courses where substring(code, 1, 3) = 'TBP' or substring(code, 1, 3) = 'EAT' or substring(code, 1, 4) = 'ENT2' order by title;"), :courseworks, :t_c, :id, :title, selected_key = nil) %>
+   <% else %>
+<%= option_groups_from_collection_for_select(Course.find_by_sql("select * from courses where substring(code, 1, 3) != 'TBP' and substring(code, 1, 3) != 'EAT' and substring(code, 1, 4) != 'ENT2' order by code;"), :courseworks, :c_t, :id, :title, selected_key = nil) %>
+<%= option_groups_from_collection_for_select(Course.find_by_sql("select * from courses where substring(code, 1, 3) = 'TBP' or substring(code, 1, 3) = 'EAT' or substring(code, 1, 4) = 'ENT2' order by code;"), :courseworks, :c_t, :id, :title, selected_key = nil) %>
+   <% end %>
+    </select>
